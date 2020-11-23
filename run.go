@@ -17,16 +17,20 @@ func justRun(imeiCode string, distance string) bool {
 	iosb := false
 	log.Println("run " + imeiCode + " " + distance)
 	randomGenerateTable()
-	resInfo, _ := http.Get(apiRoot + "/%7Btoken%7D/QM_Users" +
-		"/Login_AndroidSchool?IMEICode=" + imeiCode)
+	req, _ := http.NewRequest("GET", apiRoot+"/%7Btoken%7D/QM_Users"+
+		"/Login_AndroidSchool?IMEICode="+imeiCode, nil)
+	req.Header.Add("version", appVersion)
+	resInfo, _ := (&http.Client{}).Do(req)
 	dataInfo, _ := ioutil.ReadAll(resInfo.Body)
 	// log.Println(string(dataInfo))
 	resInfo.Body.Close()
 	returnData := &returnInfo{}
 	_ = json.Unmarshal(dataInfo, returnData)
 	if !returnData.Success {
-		resInfo, _ := http.Get(ios + "/%7Btoken%7D/QM_Users" +
-			"/LoginSchool?IMEICode=" + imeiCode)
+		req, _ := http.NewRequest("GET", ios+"/%7Btoken%7D/QM_Users"+
+			"/LoginSchool?IMEICode="+imeiCode, nil)
+		req.Header.Add("Version", appVersionForIOS)
+		resInfo, _ := (&http.Client{}).Do(req)
 		dataInfo, _ := ioutil.ReadAll(resInfo.Body)
 		log.Println(string(dataInfo))
 		resInfo.Body.Close()

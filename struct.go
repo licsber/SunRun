@@ -27,11 +27,12 @@ const (
     </body>
     </html>
     `
-	apiRoot    = "http://client3.aipao.me/api"
-	appVersion = "2.15"
-	UserAgent  = "Dalvik/2.1.0 (Linux; U; Android 9.0.0; COL-AL10 Build/HUAWEICOL-LL10)"
-	longtitude = "31.93178" // 自行更改
-	latitute   = "118.8865121" // 自行更改
+	apiRoot          = "http://client3.aipao.me/api"
+	appVersion       = "2.40"
+	appVersionForIOS = "2.25"
+	UserAgent        = "Dalvik/2.1.0 (Linux; U; Android 9.0.0; COL-AL10 Build/HUAWEICOL-LL10)"
+	longtitude       = "31.93178"    // 自行更改
+	latitute         = "118.8865121" // 自行更改
 )
 
 type codeInfo struct {
